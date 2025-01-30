@@ -1,6 +1,6 @@
 const express = require('express')
 const {hashPassword,checkpassword, } = require('../Usecase/driverUseCase')
-const {fetchallDrivers,deleteDrivers} = require('../Repo/driveRepo')
+const {fetchallDrivers,deleteDrivers,findAvailableDrivers} = require('../Repo/driveRepo')
 
 const driverRegistration =  async (req,res) => {
     try {
@@ -53,6 +53,17 @@ const deleteallDrivers = async (req,res) => {
             message:'successfully deleted all drivers data',
         })
 }
+const viewAvailableDrivers = async (req,res) => {
+    try {
+       const availableDrivers = await findAvailableDrivers()
+       res.json({
+        success:true,
+        message:"successfully fetch all available drivers",
+        availableDrivers
+       })
+    } catch (error) {
+       console.log(error) 
+    }
+}
 
-
-module.exports = {driverRegistration,driverLogin,viewallDrivers,deleteallDrivers}
+module.exports = {driverRegistration,driverLogin,viewallDrivers,deleteallDrivers,viewAvailableDrivers}

@@ -32,3 +32,11 @@ module.exports.fetchallDrivers = async () => {
 module.exports.deleteDrivers = async () => {
     return await driverModel.deleteMany({})
 }
+
+module.exports.findAvailableDrivers = async () => {
+   try {
+         return await driverModel.find({availableStatus:"free"})
+   } catch (error) {
+        console.log(error)
+   }
+}

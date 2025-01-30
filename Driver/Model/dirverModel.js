@@ -23,7 +23,8 @@ const driverSchema = new mongoose.Schema({
     },
 
     availableStatus:{
-        t
+        type:String,
+        default:"free"
     }
 })
 
