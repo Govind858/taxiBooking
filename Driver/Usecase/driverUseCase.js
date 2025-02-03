@@ -1,7 +1,7 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {createDrive,findDriver} = require('../Repo/driveRepo')
+const {createDrive,findDriver, getDriver} = require('../Repo/driveRepo')
 
 module.exports.hashPassword =  async (data) =>{
       try {
@@ -35,6 +35,20 @@ module.exports.checkpassword = async (data) => {
             token
       }
         return(driverData)
+}
+module.exports.driverPick = async ()=>{
+  try {
+        let driver = await getDriver()
+        if (Array.isArray(driver) && driver.length > 0) {
+          let randomDriver = driver[Math.floor(Math.random() * driver.length)];
+          return randomDriver;
+          } else {
+              throw new Error("Driver list is empty or invalid");
+          }      
+        return driver
+  } catch (error) {
+        console.log(error)
+  }
 }
 
 

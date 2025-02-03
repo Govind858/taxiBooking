@@ -40,3 +40,12 @@ module.exports.findAvailableDrivers = async () => {
         console.log(error)
    }
 }
+module.exports.getDriver = async ()=>{
+    try {
+        let driver = await driverModel.find({availableStatus:'free'})
+        
+        return driver;
+    } catch (error) {
+        console.log(error)   
+    }
+}
