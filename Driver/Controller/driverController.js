@@ -65,5 +65,12 @@ const viewAvailableDrivers = async (req,res) => {
        console.log(error) 
     }
 }
-
-module.exports = {driverRegistration,driverLogin,viewallDrivers,deleteallDrivers,viewAvailableDrivers}
+const pickOneDriver = async (req,res)=>{
+    try {
+        let driver = await driverPick()
+        console.log(driver,"driver..")
+    } catch (error) {
+        
+    }
+}
+module.exports = {driverRegistration,driverLogin,viewallDrivers,deleteallDrivers,viewAvailableDrivers,pickOneDriver}

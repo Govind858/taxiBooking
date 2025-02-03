@@ -19,3 +19,6 @@ module.exports.fetchallUsers = async () => {
 module.exports.deleteAll = async () => {
     return await userModel.deleteMany({})
 }
+module.exports.getuserById = async (data) => {
+    return await userModel.find({_id:data})
+}

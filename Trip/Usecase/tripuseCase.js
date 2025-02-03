@@ -1,5 +1,4 @@
 const express = require('express')
-
 module.exports.newtrip = async (data) => {
        try {
            const kmRate = 20
@@ -8,19 +7,16 @@ module.exports.newtrip = async (data) => {
            data.tripRate = tripRate
            console.log(data,"in user")
             return (data)
-        // const accepted = 
-        //     if(accepted){
-        //         await Savetrip()
-        //     }
-
        } catch (error) {
             console.log(error)
        }
        
 }
-module.exports.searchNowFn = async(data)=>{
+module.exports.searchNowFn = async(data,req)=>{
     try {
         console.log(data,"--data from saerchnow fn")
+        const token = data.headers["authorization"]?.split(" ")[1]; // Remove 'Bearer' prefix
+        
     } catch (error) {
         console.log(error)  
     }

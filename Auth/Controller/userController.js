@@ -47,8 +47,14 @@ const deleteallUsers = async (req,res) => {
         message:"deleted all users data",
     })
 }
+const getuserById = async (req,res) => {
+            try {
+                await getuserByIdfn(req.body)
+            } catch (error) {
+                console.log(error)
+            }
+}
 
-
-module.exports = {userRegistration,userLogin,viewallUsers,deleteallUsers}
+module.exports = {userRegistration,userLogin,viewallUsers,deleteallUsers,getuserById}
 
 

@@ -1,7 +1,8 @@
-const {createUser,findUser} = require("../Repo/authRepo");
+const {createUser,findUser, getuserById} = require("../Repo/authRepo");
 const express = require('express')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const userModel = require("../model/authModel");
 
  
 module.exports.passwordHashing =async (data) =>{
@@ -23,7 +24,9 @@ module.exports.loginFunction = async (data) => {
     if(!isMatch){   
         throw new Error('invalid password');
     }
-    const token = jwt.sign({id: user._id}, "this_is_secretKey", {expiresIn: '1h'})
+    console.log(user[0]._id,"userid.............")
+    let userid = user[0]._id
+    const token = jwt.sign({id:userid}, "this_is_secretKey", {expiresIn: '1h'})
     let {name} = user[0]
     let {mobile} = user[0]
     let userData = {
@@ -31,7 +34,14 @@ module.exports.loginFunction = async (data) => {
         mobile,
         token
     }
-    console.log(token)
+    console.log(userData,token,"user data with token")
     return(userData)
 }
-
+module.exports.getuserByIdfn = async (data)=>{
+    try {
+        let user = await getuserById(data)
+        return user
+    } catch (error) {
+        console.log(error)
+    }
+}
