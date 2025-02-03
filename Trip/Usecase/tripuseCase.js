@@ -21,3 +21,14 @@ module.exports.searchNowFn = async(data,req)=>{
         console.log(error)  
     }
 }
+
+module.exports.tripAcceptedStatus = async (data) => {
+    try {
+        console.log(data)
+        data.AccepetedStatus = 'Accepted'
+        console.log(data)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}

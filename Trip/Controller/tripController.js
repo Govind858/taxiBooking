@@ -1,5 +1,5 @@
 const express = require('express')
-const {newtrip,searchNowFn} = require('../Usecase/tripuseCase')
+const {newtrip,searchNowFn, tripAcceptedStatus} = require('../Usecase/tripuseCase')
 const {getuserById, getuserByIdfn} = require('../../Auth/Usecase/useruseCase')
 const jwt = require("jsonwebtoken");
 const { driverPick } = require('../../Driver/Usecase/driverUseCase');
@@ -41,7 +41,7 @@ const searchNow = async (req, res) => {
             user:user,
             driver:driver,
             TripStatus:"Not_started",
-            AccepetedStatus:"Not_Accepted"
+            AccepetedStatus:"Accepted "
         }
 
         res.json({ TripData });
@@ -51,4 +51,14 @@ const searchNow = async (req, res) => {
     }
 };;
 
-module.exports = {createTrip,searchNow}
+const acceptRide = async (req,res) => {
+
+    let data = req.body
+    let newdata = await tripAcceptedStatus(data)
+    console.log(data)
+    res.json({
+        data
+    })
+}
+
+module.exports = {createTrip,searchNow,acceptRide}
