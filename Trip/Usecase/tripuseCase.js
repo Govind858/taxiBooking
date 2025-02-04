@@ -1,5 +1,6 @@
 const express = require('express')
-module.exports.newtrip = async (data) => {
+const {addtoDb,updataStatus} = require('../Repo/tripRepo')
+ module.exports.newtrip = async (data) => {
        try {
            const kmRate = 20
            let {km} = data
@@ -19,5 +20,26 @@ module.exports.searchNowFn = async(data,req)=>{
         
     } catch (error) {
         console.log(error)  
+    }
+}
+
+module.exports.tripAcceptedStatus = async (data) => {
+    try {
+        data.AccepetedStatus = 'Accepted'
+        console.log(data)
+        await addtoDb(data)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+module.exports.tripStatus = async (data) => {
+    try {
+       console.log(data,"=========")
+       let updatedData =  await updataStatus(data)
+       return updatedData
+    } catch (error) {
+        
     }
 }
