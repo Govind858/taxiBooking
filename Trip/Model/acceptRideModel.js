@@ -25,6 +25,14 @@ const acceptRideSchema = new mongoose.Schema({
         type:String,
         default:"Accepted"
     },
+    paymentStatus:{
+        type:String,
+        default:"Not_payed"
+    },
+    paymentMode:{
+        type:String,
+        default:"UPI"
+    }
     
 },{timestamps:true})
 

@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const {createTrip,searchNow, acceptRide, updateTripStatus} = require('../Controller/tripController')
+const {createTrip,searchNow, acceptRide, updateTripStatus,upadtePaymentStatus} = require('../Controller/tripController')
 const {verifyToken} = require('../../Middleware/UserMiddleware')
 router.route('/createTrip').post(verifyToken,createTrip)
 router.route('/SearchNow').post(verifyToken,searchNow)
 router.route('/acceptRide').post(acceptRide)
 router.route('/updateTripStatus').post(updateTripStatus)
-
+router.route('/upadtePaymentStatus').post(upadtePaymentStatus)
 module.exports = router

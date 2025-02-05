@@ -18,3 +18,16 @@ module.exports.addtoDb = async (data) => {
         }
     };
     
+    module.exports.updatedStatusfn = async (data) => {
+        try {
+            let dataUpdated = await AcceptRideModel.updateOne(
+                { _id: data.id }, 
+                { $set: { paymentStatus: "paid", paymentMode: data.paymentMode } }
+            );
+            return dataUpdated; // Returning the update result
+        } catch (error) {
+            console.error(error);
+            throw error; // Throwing the error so it can be handled where this function is called
+        }
+    };
+    

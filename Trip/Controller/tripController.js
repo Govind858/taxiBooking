@@ -3,7 +3,7 @@ const {newtrip,searchNowFn, tripAcceptedStatus,tripStatus} = require('../Usecase
 const {getuserById, getuserByIdfn} = require('../../Auth/Usecase/useruseCase')
 const jwt = require("jsonwebtoken");
 const { driverPick } = require('../../Driver/Usecase/driverUseCase');
-
+const {updatedStatusfn} = require('../Repo/tripRepo')
 
 const createTrip =  async (req,res) => {
    try {
@@ -82,5 +82,18 @@ const updateTripStatus = async (req,res) => {
     }
 }
 
+const upadtePaymentStatus = async (req,res)=>{
+    try {
+        console.log(req.body)
+        let updatedStatus = await updatedStatusfn(req.body)
+        res.json({
+            updatedStatus,
+            message:"successfully updated",
+            success:true
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-module.exports = {createTrip,searchNow,acceptRide,updateTripStatus}
+module.exports = {createTrip,searchNow,acceptRide,updateTripStatus,upadtePaymentStatus}
