@@ -4,7 +4,7 @@ const {createTrip,searchNow, acceptRide, updateTripStatus,upadtePaymentStatus} =
 const {verifyToken} = require('../../Middleware/UserMiddleware')
 router.route('/createTrip').post(verifyToken,createTrip)
 router.route('/SearchNow').post(verifyToken,searchNow)
-router.route('/acceptRide').post(acceptRide)
-router.route('/updateTripStatus').post(updateTripStatus)
-router.route('/upadtePaymentStatus').post(upadtePaymentStatus)
+router.route('/acceptRide').post(verifyToken,acceptRide)
+router.route('/updateTripStatus').post(verifyToken,updateTripStatus)
+router.route('/upadtePaymentStatus').post(verifyToken,upadtePaymentStatus)
 module.exports = router
